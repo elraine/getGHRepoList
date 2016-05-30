@@ -11,9 +11,13 @@ import SwiftyJSON
 
 class TableViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
     
+    //initialize to get data from segue
     var json:JSON = []
     var login:String = ""
     
+    
+    
+    //methods for delegate and UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
@@ -28,10 +32,6 @@ class TableViewController: UIViewController,UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for (key,subJson):(String, JSON) in json {
-            //Do something you want
-        }
         
     }
 

@@ -7,7 +7,11 @@
 //
 
 import UIKit
+
+//HTTP request
 import Alamofire
+
+//JSON handling
 import SwiftyJSON
 
 class ViewController: UIViewController {
@@ -21,25 +25,46 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchStatus: UILabel!
     
     
+    //global for segue
     var jsondata:JSON = []
+    
+    
     @IBAction func justDoIt(sender: UIButton) {
         
+        //i dont want every user of github, so i stop it there
+        if((searchField.text!.isEmpty)){
+            print("Ca n'aura aucun effet")
+            searchStatus.hidden = false
+            searchStatus.text = "error"
+            return
+        }
         
+        //compose the URL string
         let composeReq = "https://api.github.com/search/users?q="+searchField.text!
+        
+        //declare here to show after
         var avatarURL:String = ""
         var login:String = ""
         
+        //if status is valid, dont show it
+        //hide for the new request
         searchStatus.hidden = true
+        
+        //ask Github API for information
         Alamofire.request(.GET, composeReq , parameters: ["foo": "bar"])
             .responseJSON { response in
                 switch response.result {
                 case .Success:
-                    //                    print("Validation Successful")
+                    //print("Validation Successful")
                     if let value = response.result.value {
                         let json = JSON(value)
-                        //                    print(json["items",0])
+                        //print(json["items",0])
+                        
+                        //get these data
                         login = json["items",0,"login"].string!
                         avatarURL = json["items",0,"avatar_url"].string!
+                        
+                        //show me
                         print(login)
                         print(avatarURL)
                         
@@ -50,12 +75,13 @@ class ViewController: UIViewController {
                     //Set user info
                     self.avatarLogin.text = login
                     
-                    //image
+                    //image set
                     Alamofire.request(.GET, avatarURL).response { (request, response, data, error) in
                         self.avatarImage.image = UIImage(data: data!, scale:1)
                     }
                     
                 case .Failure(let error):
+                    //show status now
                     self.searchStatus.hidden = false
                     self.searchStatus.text = "error"
                     print(error)
@@ -70,10 +96,11 @@ class ViewController: UIViewController {
     
     
     @IBAction func GetList(sender: AnyObject) {
-        //    }
-        //    func getUserRepoList(sender:UIButton){
+        //hide for the new request
         searchStatus.hidden = true
         
+        //reduce the load
+        //if searchField.text is empty, the search returns lots of repo, i dont want that.
         if ((searchField.text) != nil) {
             if((searchField.text!.isEmpty)){
                 print("Ca n'aura aucun effet")
@@ -87,15 +114,6 @@ class ViewController: UIViewController {
             
             Alamofire.request(.GET, composeReq , parameters: ["foo": "bar"])
                 .responseJSON { response in
-                    //                    print("URL req")
-                    //                    print(response.request)  // original URL request
-                    //                    print("URL resp")
-                    //                    print(response.response) // URL response
-                    //                    print("URL data")
-                    //                    print(response.data)     // server data
-                    //                    print("results")
-                    //                    print(response.result)   // result of response serialization
-                    
                     switch response.result {
                     case .Success:
                         //                        print("Validation Successful")
@@ -103,7 +121,7 @@ class ViewController: UIViewController {
                             let json = JSON(value)
                             print(json["items"])
                             self.jsondata = json["items"]
-//                            self.performSegueWithIdentifier("getRepoList", sender:sender)
+// self.performSegueWithIdentifier("getRepoList", sender:sender)
                         }
                     case .Failure(let error):
                         self.searchStatus.hidden = false
@@ -132,6 +150,7 @@ class ViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
+        //not used, but it is there.
         if segue.identifier == "getRepoList" {
             
             if let tableViewController = segue.destinationViewController as? TableViewController{

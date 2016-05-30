@@ -590,6 +590,7 @@
 				12C050B31CFC628300D67195 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
