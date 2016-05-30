@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -18,44 +19,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fhI-bG-jQk">
-                                <rect key="frame" x="20" y="270" width="560" height="60"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="AjV-nC-5hF">
+                                <rect key="frame" x="20" y="20" width="560" height="580"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search GitHub login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bdj-JM-mwq">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Idg-6f-0nO">
-                                        <rect key="frame" x="256" y="30" width="48" height="30"/>
-                                        <state key="normal" title="Search"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgr-kC-0BL">
+                                        <rect key="frame" x="229" y="0.0" width="102" height="30"/>
+                                        <state key="normal" title="Search for lists"/>
                                         <connections>
-                                            <action selector="justDoIt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TY9-KH-uFJ"/>
+                                            <action selector="GetList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Qg-Q5-pss"/>
                                         </connections>
                                     </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fhI-bG-jQk">
+                                        <rect key="frame" x="205" y="80" width="151" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search GitHub login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bdj-JM-mwq">
+                                                <rect key="frame" x="0.0" y="0.0" width="151" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Idg-6f-0nO">
+                                                <rect key="frame" x="16" y="30" width="119" height="30"/>
+                                                <state key="normal" title="Search for profile"/>
+                                                <connections>
+                                                    <action selector="justDoIt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d8l-ys-G9M"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="bdj-JM-mwq" firstAttribute="trailing" secondItem="fhI-bG-jQk" secondAttribute="trailingMargin" id="KiS-oU-XIi"/>
+                                            <constraint firstItem="bdj-JM-mwq" firstAttribute="top" secondItem="fhI-bG-jQk" secondAttribute="topMargin" constant="10" id="VMk-xU-RrM"/>
+                                            <constraint firstItem="bdj-JM-mwq" firstAttribute="leading" secondItem="fhI-bG-jQk" secondAttribute="leadingMargin" id="emi-Bj-vvg"/>
+                                            <constraint firstItem="Idg-6f-0nO" firstAttribute="top" secondItem="bdj-JM-mwq" secondAttribute="bottom" constant="10" id="oTv-OO-6uu"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="VMk-xU-RrM"/>
+                                                <exclude reference="oTv-OO-6uu"/>
+                                            </mask>
+                                        </variation>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jDz-Oj-Fi0">
+                                        <rect key="frame" x="0.0" y="190" width="560" height="390"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AtB-R2-3hV">
+                                                <rect key="frame" x="0.0" y="131" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="128" id="7sQ-co-6Fe"/>
+                                                    <constraint firstAttribute="width" secondItem="AtB-R2-3hV" secondAttribute="height" id="daD-HR-CxJ"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Uy-Dq-N6f">
+                                                <rect key="frame" x="128" y="0.0" width="432" height="390"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="bdj-JM-mwq" firstAttribute="trailing" secondItem="fhI-bG-jQk" secondAttribute="trailingMargin" id="KiS-oU-XIi"/>
-                                    <constraint firstItem="bdj-JM-mwq" firstAttribute="top" secondItem="fhI-bG-jQk" secondAttribute="topMargin" constant="10" id="VMk-xU-RrM"/>
-                                    <constraint firstItem="bdj-JM-mwq" firstAttribute="leading" secondItem="fhI-bG-jQk" secondAttribute="leadingMargin" id="emi-Bj-vvg"/>
-                                    <constraint firstItem="Idg-6f-0nO" firstAttribute="top" secondItem="bdj-JM-mwq" secondAttribute="bottom" constant="10" id="oTv-OO-6uu"/>
+                                    <constraint firstItem="jDz-Oj-Fi0" firstAttribute="leading" secondItem="AjV-nC-5hF" secondAttribute="leading" id="K1e-ce-ibE"/>
+                                    <constraint firstAttribute="trailing" secondItem="jDz-Oj-Fi0" secondAttribute="trailing" id="lAp-Jf-P8r"/>
+                                    <constraint firstItem="jDz-Oj-Fi0" firstAttribute="top" secondItem="fhI-bG-jQk" secondAttribute="bottom" constant="50" id="sae-r1-wHX"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="VMk-xU-RrM"/>
-                                        <exclude reference="oTv-OO-6uu"/>
-                                    </mask>
-                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fhI-bG-jQk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="49O-HS-ir6"/>
-                            <constraint firstItem="fhI-bG-jQk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="edP-AU-urk"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fhI-bG-jQk" secondAttribute="trailing" id="iPs-t6-mP8"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="AjV-nC-5hF" secondAttribute="bottom" id="FLQ-mZ-vun"/>
+                            <constraint firstItem="AjV-nC-5hF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="S9E-bh-J2I"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AjV-nC-5hF" secondAttribute="trailing" id="cXD-N4-8ey"/>
+                            <constraint firstItem="AjV-nC-5hF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="r3l-YY-SVh"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="avatarImage" destination="AtB-R2-3hV" id="FNs-ul-ep6"/>
+                        <outlet property="avatarLogin" destination="9Uy-Dq-N6f" id="sJX-U2-Ibq"/>
                         <outlet property="lookButton" destination="Idg-6f-0nO" id="6Cl-ES-ylD"/>
                         <outlet property="searchField" destination="bdj-JM-mwq" id="XDw-8S-8Jk"/>
                     </connections>
